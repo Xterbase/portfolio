@@ -54,7 +54,7 @@ p{max-width:72ch}
 nav{position:sticky;top:0;z-index:var(--z-nav);
   background:var(--navy);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;gap:2rem;height:4rem}
-nav .mark{font-weight:800;letter-spacing:-.04em;font-size:1.125rem}
+nav .mark{font-weight:800;letter-spacing:-.04em;font-size:1.125rem;white-space:nowrap}
 nav ul{margin-left:auto;display:flex;gap:1.75rem;list-style:none}
 nav ul a{font-size:.875rem;font-weight:400;color:var(--muted);
   padding-block:.25rem;border-bottom:2px solid transparent;
@@ -172,15 +172,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   .detail{padding-left:0}
   .detail dl{grid-template-columns:7rem 1fr}
   h2{font-size:1.875rem}
-  nav ul{gap:1rem}
-  nav .wrap{gap:1rem}
+  nav ul{gap:.875rem}
+  nav .wrap{gap:.875rem}
+  nav .mark{font-size:.9375rem}
+  nav ul a{font-size:.8125rem}
   .facts dl{grid-template-columns:7rem 1fr}
 }
 </style>
 
 <nav>
   <div class="wrap">
-    <span class="mark">MCH</span>
+    <a class="mark" href="#">MIN CHANHONG</a>
     <ul>
       <li><a href="#profile">Profile</a></li>
       <li><a href="#work">Work</a></li>
