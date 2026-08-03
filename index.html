@@ -1,47 +1,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Min Chan Hong — Data &amp; AI</title>
+<title>Min Chanhong — Data &amp; AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0B2B43;
-  --white:#FFFFFF;
-  --surface:rgba(255,255,255,.045);
-  --surface-hi:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.16);
-  --muted:rgba(255,255,255,.62);
-  --r:8px;
-  --shadow:0 2px 12px rgba(0,0,0,.06);
-  --shadow-lift:0 6px 20px rgba(0,0,0,.12);
+  --ink:#1d1d1f;
+  --mid-gray:#707070;
+  --deep-gray:#474747;
+  --hairline:#d6d6d6;
+  --canvas:#f5f5f7;
+  --paper:#ffffff;
+  --cool-wash:#e8e8ed;
+  --faded-surface:#fafafc;
+  --quiet-dot:#777779;
+  --blue:#0071e3;
+  --link-blue:#0066cc;
+  --ember:#b64400;
+
+  --r-cards:28px; --r-links:10px; --r-badges:36px;
+  --r-buttons:980px; --r-small-buttons:999px;
+
   --ease:cubic-bezier(.16,.84,.44,1);
-  --u:.5rem;
-  --gap-section:clamp(4rem,8vw,8rem);
-  /* z-index contract */
-  --z-base:0; --z-nav:100; --z-overlay:200;
+  --page-max:1200px;
+  --section-gap:clamp(64px,10vw,120px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--navy);color:var(--white);
-  font-family:'Syne','Noto Sans KR',sans-serif;font-size:1rem;line-height:1.6;
+body{background:var(--paper);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
   -webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 
-.wrap{max-width:1280px;margin:0 auto;padding-inline:1.5rem}
-.mono{font-family:'JetBrains Mono',monospace}
-.muted{color:var(--muted)}
-.display{font-weight:700;letter-spacing:-.04em;line-height:.9}
-h1{font-size:clamp(2.5rem,5vw,4rem)}
-h2{font-size:2.25rem;font-weight:700;letter-spacing:-.04em;line-height:1}
-h3{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.2}
-p{max-width:72ch}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.875rem;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.small{font-size:.875rem}
+.wrap{max-width:var(--page-max);margin:0 auto;padding-inline:clamp(20px,5vw,80px)}
+.band{padding-block:var(--section-gap)}
+.band-canvas{background:var(--canvas)}
+.numr{font-feature-settings:"numr"}
 
-/* ---- entry animation: fade + translateY 16px, 420ms ease-out ---- */
+/* ---- type scale (fluid, ratios preserve the documented line-heights) ---- */
+.t-display   {font-weight:700;font-size:clamp(2.75rem,9vw,6rem);   line-height:1.0417; letter-spacing:-1.44px}
+.t-heading-lg{font-weight:600;font-size:clamp(2.25rem,7vw,5rem);   line-height:1.05;   letter-spacing:-1.2px}
+.t-heading   {font-weight:600;font-size:clamp(1.75rem,4.5vw,3.5rem);line-height:1.0714;letter-spacing:-0.28px}
+.t-heading-sm{font-weight:600;font-size:clamp(1.5rem,3vw,2.5rem);  line-height:1.2}
+.t-subheading{font-weight:600;font-size:clamp(1.25rem,2.2vw,2rem);line-height:1.125;  letter-spacing:0.128px}
+.t-body-lg   {font-weight:400;font-size:1.75rem;line-height:1.1429;letter-spacing:0.196px}
+.t-body      {font-weight:400;font-size:1.3125rem;line-height:1.381;letter-spacing:0.231px}
+.t-body-sm   {font-weight:400;font-size:1.0625rem;line-height:1.4706;letter-spacing:-0.374px}
+.t-caption   {font-weight:400;font-size:.875rem;line-height:1.2857;letter-spacing:-0.224px}
+.t-micro     {font-weight:400;font-size:.75rem; line-height:1.3333;letter-spacing:-0.12px}
+
+.ink{color:var(--ink)} .mid{color:var(--mid-gray)} .deep{color:var(--deep-gray)}
+.center{text-align:center}
+
+/* Apple headlines can center; body copy stays left-aligned */
+p{max-width:64ch}
+
+/* ---- entry: fade + translateY(16px→0), 420ms ease-out ---- */
 .rise{opacity:0;transform:translateY(16px);
   transition:opacity .42s var(--ease),transform .42s var(--ease)}
 .rise.in{opacity:1;transform:none}
@@ -50,374 +66,377 @@ p{max-width:72ch}
   html{scroll-behavior:auto}
 }
 
-/* ---- nav ---- */
-nav{position:sticky;top:0;z-index:var(--z-nav);
-  background:var(--navy);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:2rem;height:4rem}
-nav .mark{font-weight:800;letter-spacing:-.04em;font-size:1.125rem;white-space:nowrap}
-nav ul{margin-left:auto;display:flex;gap:1.75rem;list-style:none}
-nav ul a{font-size:.875rem;font-weight:400;color:var(--muted);
-  padding-block:.25rem;border-bottom:2px solid transparent;
-  transition:color .2s var(--ease),border-color .2s var(--ease)}
-nav ul a:hover{color:var(--white)}
-nav ul a.active{color:var(--white);font-weight:500;border-bottom-color:var(--white)}
+/* ---- global nav: 44px sticky, blur on scroll ---- */
+nav{position:sticky;top:0;z-index:100;height:44px;
+  background:rgba(255,255,255,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transition:background .3s var(--ease)}
+nav.scrolled{background:rgba(250,250,252,.92)}
+nav .wrap{height:44px;display:flex;align-items:center;gap:clamp(12px,3vw,32px)}
+nav .logo{font-weight:600;font-size:.8125rem;letter-spacing:-0.12px;white-space:nowrap;color:var(--ink)}
+nav ul{margin-left:auto;display:flex;gap:clamp(10px,2vw,24px);list-style:none}
+nav ul a{font-size:.75rem;color:var(--ink);padding-bottom:2px;
+  border-bottom:1px solid transparent;transition:border-color .2s var(--ease),color .2s var(--ease)}
+nav ul a:hover{color:var(--mid-gray)}
+nav ul a.active{border-bottom-color:var(--ink)}
 
 /* ---- buttons ---- */
-.btn{display:inline-block;border-radius:var(--r);padding:12px 1.5rem;
-  font-size:.875rem;font-weight:600;letter-spacing:.01em;border:1.5px solid transparent;
-  transition:background .2s var(--ease),color .2s var(--ease),
-             box-shadow .2s var(--ease),transform .2s var(--ease)}
-.btn-primary{background:var(--white);color:var(--navy);box-shadow:var(--shadow)}
-.btn-primary:hover{background:#EAEAEA;box-shadow:var(--shadow-lift);transform:translateY(-1px)}
-.btn-primary:active{transform:translateY(1px);box-shadow:var(--shadow)}
-.btn-ghost{border-color:var(--line);color:var(--white)}
-.btn-ghost:hover{background:var(--surface-hi)}
-.btn-ghost:active{transform:translateY(1px)}
+.btn{display:inline-block;font-size:1.0625rem;font-weight:400;
+  transition:background .2s var(--ease),opacity .2s var(--ease),transform .2s var(--ease)}
+.btn-filled{border-radius:var(--r-buttons);background:var(--blue);color:#fff;
+  padding:11px 16px}
+.btn-filled:hover{background:#0077ed}
+.btn-filled:active{transform:scale(.98)}
+.btn-ghost{border-radius:var(--r-small-buttons);border:1px solid rgba(0,0,0,.8);
+  color:var(--ink);padding:11px 16px}
+.btn-ghost:hover{background:var(--cool-wash)}
+.btn-link{color:var(--link-blue);font-size:1.0625rem}
+.btn-link:hover{text-decoration:underline}
+.btn-link::after{content:' \2192'}
 
-/* ---- hero: split-screen, text left / visual right ---- */
-.hero{min-height:100dvh;display:grid;align-items:center;
-  padding-block:clamp(4rem,8vw,7rem)}
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;
-  gap:clamp(2rem,5vw,4rem);align-items:center}
-.hero h1{margin-block:1.5rem 1.25rem}
-.hero .lede{font-size:1.125rem;color:var(--muted)}
-.hero .lede+.lede{margin-top:1rem}
-.hero .actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}
-.hero figure{position:relative}
-.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;
-  border:1px solid var(--line);border-radius:var(--r)}
-.hero figcaption{position:absolute;left:0;bottom:-2rem;font-size:.875rem}
+/* ---- hero (Product Hero pattern) ---- */
+.hero{padding-block:64px 0;text-align:center}
+.hero .eyebrow{font-size:1.0625rem;color:var(--ink);margin-bottom:8px}
+.hero h1{margin-block:0 20px}
+.hero .sub{color:var(--mid-gray);margin:16px auto 28px;max-width:44ch;text-align:left}
+.hero figure{margin-top:52px}
+.hero figure img{width:100%;max-width:640px;margin-inline:auto;
+  aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:var(--r-cards)}
 
-/* ---- section shell ---- */
-section{padding-block:var(--gap-section)}
-.head{display:grid;gap:.75rem;margin-bottom:clamp(2.5rem,5vw,4rem)}
-.rule{height:1px;background:var(--line);border:0}
+/* ---- section header (left-aligned label + supporting paragraph) ---- */
+.head{margin-bottom:clamp(40px,6vw,72px)}
+.head .eyebrow{color:var(--ink);margin-bottom:12px}
+.head p{color:var(--mid-gray);margin-top:12px}
 
-/* ---- facts ---- */
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(2rem,5vw,4rem)}
-.facts dl{display:grid;grid-template-columns:8.5rem 1fr;gap:0}
-.facts dt,.facts dd{padding-block:.875rem;border-top:1px solid var(--line)}
-.facts dt{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--muted);
-  letter-spacing:.04em}
-.facts dd{font-size:.9375rem}
+/* ---- fact list (definition rows, hairline dividers) ---- */
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,5vw,64px)}
+.facts dl{display:grid;grid-template-columns:7.5rem 1fr}
+.facts dt,.facts dd{padding-block:14px;border-top:1px solid var(--hairline)}
+.facts dt{color:var(--mid-gray);font-size:.875rem}
+.facts dd{font-size:1.0625rem}
 
-/* ---- zig-zag rows ---- */
-.row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);
-  align-items:center;padding-block:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--line)}
-.row:first-of-type{border-top:0}
-.row.flip .copy{order:2}
-.row .copy{display:grid;gap:1rem;align-content:start}
-.row .copy .tag{display:flex;gap:.75rem;align-items:baseline}
-.row .copy p{color:var(--muted)}
-.row figure{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-  box-shadow:var(--shadow);padding:var(--u);
-  transition:background .2s var(--ease),box-shadow .2s var(--ease)}
-.row figure:hover{background:var(--surface-hi);box-shadow:var(--shadow-lift)}
-.row figure img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:calc(var(--r) - 2px)}
-.row figcaption{padding:.75rem .25rem .25rem;font-size:.875rem;color:var(--muted);
-  font-family:'JetBrains Mono',monospace}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--u)}
-.pair img{aspect-ratio:1/1}
+/* ---- feature showcase rows: alternating text/image, cards ---- */
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);
+  align-items:center;margin-bottom:clamp(24px,4vw,40px)}
+.feature.flip .copy{order:2}
+.feature .copy{background:var(--paper);border-radius:var(--r-cards);
+  padding:clamp(24px,4vw,40px)}
+.band-canvas .feature .copy{background:var(--paper)}
+.feature .no{color:var(--mid-gray);font-size:.875rem;margin-bottom:8px}
+.feature h3{margin-bottom:12px}
+.feature p{color:var(--mid-gray)}
+.feature .note{color:var(--mid-gray);font-size:.875rem;margin-top:16px}
+.feature .visual{border-radius:var(--r-cards);overflow:hidden;background:var(--canvas)}
+.feature .visual .pair{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.feature .visual img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.feature .visual.single img{aspect-ratio:16/11}
 
-/* ---- skills / education list (no 3-col) ---- */
-.list{display:grid}
-.item{display:grid;grid-template-columns:3.5rem 1fr 1fr;gap:clamp(1rem,3vw,3rem);
-  padding-block:1.75rem;border-top:1px solid var(--line);align-items:baseline}
-.list .item:last-child{border-bottom:1px solid var(--line)}
-.item .no{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--muted)}
-.item h3{font-size:1.5rem}
-.item .meta{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--muted);
-  margin-top:.375rem}
-.item p{color:var(--muted);font-size:.9375rem}
+/* ---- skills / education card grid ---- */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--paper);border-radius:var(--r-cards);padding:28px}
+.band-canvas .card{background:var(--paper)}
+.card .no{color:var(--mid-gray);font-size:.875rem;margin-bottom:16px}
+.card h3{margin-bottom:8px}
+.card .meta{color:var(--mid-gray);font-size:.875rem;margin-bottom:12px}
+.card p{color:var(--mid-gray)}
+.badge{display:inline-block;color:var(--ember);font-size:.75rem;font-weight:500;
+  margin-bottom:8px}
 
-/* ---- expandable course rows (native <details>) ---- */
-details.item{display:block;padding-block:0}
-details.item summary{display:grid;grid-template-columns:3.5rem 1fr 1fr auto;
-  gap:clamp(1rem,3vw,3rem);padding-block:1.75rem;align-items:baseline;
-  cursor:pointer;list-style:none;transition:background .2s var(--ease)}
-details.item summary::-webkit-details-marker{display:none}
-details.item summary:hover{background:var(--surface)}
-details.item summary:focus-visible{outline:2px solid var(--white);outline-offset:2px}
-.chev{width:.5rem;height:.5rem;justify-self:end;align-self:center;
-  border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);
+/* ---- education accordion cards ---- */
+.edu-card{background:var(--paper);border-radius:var(--r-cards);
+  margin-bottom:20px;overflow:hidden}
+.edu-card summary{display:flex;align-items:center;gap:20px;
+  padding:28px;cursor:pointer;list-style:none}
+.edu-card summary::-webkit-details-marker{display:none}
+.edu-card summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.edu-card .no{color:var(--mid-gray);font-size:.875rem;flex:none;width:1.5rem}
+.edu-card .head-text{flex:1}
+.edu-card h3{margin-bottom:4px}
+.edu-card .meta{color:var(--mid-gray);font-size:.875rem}
+.edu-card .chev{width:9px;height:9px;flex:none;
+  border-right:1.5px solid var(--mid-gray);border-bottom:1.5px solid var(--mid-gray);
   transform:rotate(45deg);transition:transform .2s var(--ease)}
-details[open] .chev{transform:rotate(-135deg)}
-.detail{display:grid;gap:1.25rem;
-  padding:0 0 1.75rem calc(3.5rem + clamp(1rem,3vw,3rem))}
-.detail p{color:var(--muted);font-size:.9375rem}
-.detail dl{display:grid;grid-template-columns:9rem 1fr}
-.detail dt,.detail dd{padding-block:.625rem;border-top:1px solid var(--line)}
-.detail dt{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--muted);
-  letter-spacing:.04em}
-.detail dd{font-size:.9375rem}
+.edu-card[open] .chev{transform:rotate(-135deg)}
+.edu-card .body{padding:0 28px 28px;color:var(--mid-gray)}
+.edu-card .body dl{display:grid;grid-template-columns:8rem 1fr;margin-top:16px}
+.edu-card .body dt,.edu-card .body dd{padding-block:10px;border-top:1px solid var(--hairline);
+  font-size:.9375rem}
+.edu-card .body dt{color:var(--mid-gray)}
+.edu-card .body dd{color:var(--ink)}
 
-/* ---- contact ---- */
-.contact .wrap{display:grid;gap:2rem;justify-items:start}
-.contact h2{font-size:clamp(2.5rem,5vw,4rem);letter-spacing:-.04em;line-height:.9}
-.channels{display:flex;gap:2rem;flex-wrap:wrap}
+/* ---- closing CTA band ---- */
+.cta{text-align:center}
+.cta h2{margin-bottom:20px}
+.cta .contact-line{color:var(--mid-gray);margin:20px auto 0;font-size:1.0625rem}
+.cta .contact-line a{color:var(--link-blue)}
+.cta .contact-line a:hover{text-decoration:underline}
 
-footer{border-top:1px solid var(--line);padding-block:2rem}
-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--muted)}
+/* ---- footer legal block ---- */
+footer{background:var(--canvas);padding-block:40px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  color:var(--mid-gray);font-size:.75rem;line-height:1.33}
+footer a{color:var(--link-blue)}
+footer a:hover{text-decoration:underline}
 
-@media (max-width:767px){
-  .hero .wrap,.facts,.row,.item{grid-template-columns:1fr}
-  .hero figure{order:-1}
-  .hero figcaption{position:static;margin-top:.75rem}
-  .row.flip .copy{order:0}
-  .item{gap:.5rem}
-  details.item summary{grid-template-columns:1fr auto;gap:.5rem}
-  details.item summary .no{grid-column:1}
-  details.item summary .chev{grid-row:1;grid-column:2}
-  .detail{padding-left:0}
-  .detail dl{grid-template-columns:7rem 1fr}
-  h2{font-size:1.875rem}
-  nav ul{gap:.875rem}
-  nav .wrap{gap:.875rem}
-  nav .mark{font-size:.9375rem}
-  nav ul a{font-size:.8125rem}
-  .facts dl{grid-template-columns:7rem 1fr}
+@media (max-width:734px){
+  .facts,.feature,.grid-3{grid-template-columns:1fr}
+  .feature.flip .copy{order:0}
+  .facts dl{grid-template-columns:6rem 1fr}
+  nav ul{gap:10px}
+  nav ul a{font-size:.6875rem}
+  .edu-card summary{gap:12px;padding:20px}
+  .edu-card .body{padding:0 20px 20px}
+  .edu-card .body dl{grid-template-columns:6rem 1fr}
 }
 </style>
 
-<nav>
+<nav id="nav">
   <div class="wrap">
-    <a class="mark" href="#">MIN CHANHONG</a>
+    <a class="logo" href="#top">Min Chanhong</a>
     <ul>
       <li><a href="#profile">Profile</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- ============ HERO ============ -->
-<header class="hero">
+<header class="hero band" id="top">
   <div class="wrap">
-    <div>
-      <p class="eyebrow rise">HNU AI DataScience Labs — 학부연구생</p>
-      <h1 class="display rise">MIN<br>CHAN<br>HONG</h1>
-      <p class="lede rise">데이터 분석과 데이터 파이프라인 구축에 유능한 능력을 갖춘 인재입니다.
-        빠른 적응력과 이해를 바탕으로 다양한 변수와 상황에 대처할 수 있습니다.</p>
-      <p class="lede mono small rise">주요 관심사 및 연구분야 : RAG, 비전처리, 웹개발</p>
-      <div class="actions rise">
-        <a class="btn btn-primary" href="#work">작업 보기</a>
-        <a class="btn btn-ghost" href="mailto:cksgdx@icloud.com">메일 보내기</a>
-      </div>
-    </div>
+    <p class="eyebrow t-body-sm rise">HNU AI DataScience Labs · 학부연구생</p>
+    <h1 class="t-display ink rise">데이터로<br>도시를 읽습니다</h1>
+    <p class="t-body sub rise">데이터 분석과 데이터 파이프라인 구축에 유능한 능력을 갖춘 인재입니다.
+      빠른 적응력과 이해를 바탕으로 다양한 변수와 상황에 대처할 수 있습니다.</p>
+    <a class="btn btn-filled rise" href="mailto:cksgdx@icloud.com">메일 보내기</a>
     <figure class="rise">
       <img src="assets/profile.jpg" alt="민찬홍 프로필 사진">
-      <figcaption class="mono muted">민찬홍 / 한남대학교 AI 데이터사이언스</figcaption>
     </figure>
   </div>
 </header>
 
 <!-- ============ PROFILE ============ -->
-<section id="profile">
+<section id="profile" class="band band-canvas">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rise">01 — Profile</p>
-      <h2 class="rise">기록</h2>
+    <div class="head rise">
+      <p class="eyebrow t-subheading">프로필</p>
+      <p class="t-body">한남대학교 AI 데이터사이언스를 전공하고, 2026년 6월부터 박영호 교수 연구실에서
+        학부연구생으로 있습니다. 주요 관심사 및 연구분야는 RAG, 비전처리, 웹개발입니다.</p>
     </div>
     <div class="facts">
       <dl class="rise">
-        <dt>NAME</dt><dd>민찬홍 (Min Chan Hong)</dd>
+        <dt>NAME</dt><dd>민찬홍 (Min Chanhong)</dd>
         <dt>MAJOR</dt><dd>한남대학교 AI 데이터사이언스</dd>
-        <dt>TERM</dt><dd>2023.03 – 2029.02 (재학)</dd>
-        <dt>LAB</dt><dd>박영호 교수 연구실 학부연구생 (2026.06 –)</dd>
+        <dt>TERM</dt><dd class="numr">2023.03 – 2029.02 (재학)</dd>
+        <dt>LAB</dt><dd class="numr">박영호 교수 연구실 학부연구생 (2026.06 –)</dd>
       </dl>
       <dl class="rise">
-        <dt>FOCUS</dt><dd>RAG · Computer Vision · Web</dd>
+        <dt>FOCUS</dt><dd>RAG · 비전처리 · 웹개발</dd>
         <dt>TOOLS</dt><dd>Python · R · SQL</dd>
-        <dt>EMAIL</dt><dd><a href="mailto:cksgdx@icloud.com">cksgdx@icloud.com</a></dd>
-        <dt>PHONE</dt><dd>010-8690-2995</dd>
+        <dt>EMAIL</dt><dd><a class="btn-link" style="font-size:inherit" href="mailto:cksgdx@icloud.com">cksgdx@icloud.com</a></dd>
+        <dt>PHONE</dt><dd class="numr">010-8690-2995</dd>
       </dl>
     </div>
   </div>
 </section>
 
 <!-- ============ WORK ============ -->
-<section id="work">
+<section id="work" class="band">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rise">02 — Selected Work</p>
-      <h2 class="rise">서울 빅데이터 공모전 — GrowSeoul</h2>
-      <p class="muted rise">서울시 카드 소비 데이터와 CJ대한통운 택배 물량 데이터를 결합해
-        연희동을 잠재 상권으로 도출하고, 구독형 분석 플랫폼까지 설계한 작업입니다. 2026.03 – 2026.05.</p>
+    <div class="head rise">
+      <p class="eyebrow t-subheading">서울 빅데이터 공모전 — GrowSeoul</p>
+      <p class="t-body">서울시 카드 소비 데이터와 CJ대한통운 택배 물량 데이터를 결합해 연희동을
+        잠재 상권으로 도출하고, 구독형 분석 플랫폼까지 설계한 작업입니다.
+        <span class="numr">2026.03 – 2026.05.</span></p>
     </div>
 
-    <div class="row rise">
+    <div class="feature rise">
       <div class="copy">
-        <div class="tag"><span class="mono muted small">01</span><h3>두 개의 데이터, 하나의 축</h3></div>
-        <p>카드 소비 데이터와 택배 물량 데이터는 집계 단위가 서로 달랐습니다. 행정동 코드를 기준으로
-          표준화하고 인코딩과 결측을 정리해 두 축을 같은 테이블 위에 올렸습니다.</p>
+        <p class="no numr">01</p>
+        <h3 class="t-heading-sm">두 개의 데이터, 하나의 축</h3>
+        <p class="t-body-sm">카드 소비 데이터와 택배 물량 데이터는 집계 단위가 서로 달랐습니다.
+          행정동 코드를 기준으로 표준화하고 인코딩과 결측을 정리해 두 축을 같은 테이블 위에 올렸습니다.</p>
       </div>
-      <figure>
+      <div class="visual">
         <div class="pair">
           <img src="assets/card-data.png" alt="카드 소비 데이터 집계 결과">
           <img src="assets/cj-data.png" alt="CJ 택배 물량 데이터 집계 결과">
         </div>
-        <figcaption>card consumption / delivery volume</figcaption>
-      </figure>
+      </div>
     </div>
 
-    <div class="row flip rise">
+    <div class="feature flip rise">
       <div class="copy">
-        <div class="tag"><span class="mono muted small">02</span><h3>전처리는 코드로 남긴다</h3></div>
-        <p>행정동 코드 표준화, 인코딩 처리, 이상치 정리를 파이썬 스크립트로 작성해 재실행 가능한
-          형태로 남겼습니다. 수작업 보정을 남기지 않는 것이 목표였습니다.</p>
+        <p class="no numr">02</p>
+        <h3 class="t-heading-sm">전처리는 코드로 남긴다</h3>
+        <p class="t-body-sm">행정동 코드 표준화, 인코딩 처리, 이상치 정리를 파이썬 스크립트로 작성해
+          재실행 가능한 형태로 남겼습니다. 수작업 보정을 남기지 않는 것이 목표였습니다.</p>
       </div>
-      <figure>
+      <div class="visual single">
         <img src="assets/hjdong-code.png" alt="행정동 코드 표준화 파이썬 코드">
-        <figcaption>preprocessing.py</figcaption>
-      </figure>
+      </div>
     </div>
 
-    <div class="row rise">
+    <div class="feature rise">
       <div class="copy">
-        <div class="tag"><span class="mono muted small">03</span><h3>성장 지수 0.45 : 0.55</h3></div>
-        <p>소비 성장과 물류 성장을 0.45 대 0.55로 묶어 성장 지수를 정의하고, 상위 행정동을
-          산점도와 순위표로 확인했습니다. 가중치는 근거를 붙였지만 여전히 설정값입니다.</p>
+        <p class="no numr">03</p>
+        <h3 class="t-heading-sm">성장 지수 0.45 : 0.55</h3>
+        <p class="t-body-sm">소비 성장과 물류 성장을 0.45 대 0.55로 묶어 성장 지수를 정의하고,
+          상위 행정동을 산점도와 순위표로 확인했습니다. 가중치는 근거를 붙였지만 여전히 설정값입니다.</p>
       </div>
-      <figure>
+      <div class="visual">
         <div class="pair">
           <img src="assets/growth-formula.png" alt="성장 지수 산식">
           <img src="assets/scatter.png" alt="소비와 물류 성장 산점도">
         </div>
-        <figcaption>growth index / distribution</figcaption>
-      </figure>
+      </div>
     </div>
 
-    <div class="row flip rise">
+    <div class="feature flip rise">
       <div class="copy">
-        <div class="tag"><span class="mono muted small">04</span><h3>지도 위에서 연희동</h3></div>
-        <p>상위 행정동을 자치구 단위와 행정동 단위로 나누어 매핑했습니다. 연희동이 기존 상권 분류에는
-          없지만 두 지표가 함께 오르는 구간에 있다는 점이 드러났습니다.</p>
+        <p class="no numr">04</p>
+        <h3 class="t-heading-sm">지도 위에서 연희동</h3>
+        <p class="t-body-sm">상위 행정동을 자치구 단위와 행정동 단위로 나누어 매핑했습니다. 연희동이
+          기존 상권 분류에는 없지만 두 지표가 함께 오르는 구간에 있다는 점이 드러났습니다.</p>
       </div>
-      <figure>
+      <div class="visual">
         <div class="pair">
           <img src="assets/map-region.png" alt="서울 자치구 단위 분포 지도">
           <img src="assets/map-detail.png" alt="연희동 상세 매핑 지도">
         </div>
-        <figcaption>region / detail mapping</figcaption>
-      </figure>
+      </div>
     </div>
 
-    <div class="row rise">
+    <div class="feature rise">
       <div class="copy">
-        <div class="tag"><span class="mono muted small">05</span><h3>분석에서 서비스로</h3></div>
-        <p>결과를 소상공인·프랜차이즈·지자체가 쓸 수 있는 구독형 플랫폼 GrowSeoul로 설계했습니다.
-          Starter 29,000원, Pro 79,000원, Enterprise 세 단계입니다.</p>
-        <p class="mono small">한계 — 택배 데이터 노이즈 · 가중치의 주관성 · 생존 편향.
+        <p class="no numr">05</p>
+        <h3 class="t-heading-sm">분석에서 서비스로</h3>
+        <p class="t-body-sm">결과를 소상공인·프랜차이즈·지자체가 쓸 수 있는 구독형 플랫폼 GrowSeoul로
+          설계했습니다. <span class="numr">Starter 29,000원, Pro 79,000원, Enterprise</span> 세 단계입니다.</p>
+        <p class="note">한계 — 택배 데이터 노이즈 · 가중치의 주관성 · 생존 편향.
           다음은 회귀 분석과 머신러닝 기반 가중치 최적화입니다.</p>
       </div>
-      <figure>
+      <div class="visual">
         <div class="pair">
           <img src="assets/growseoul.jpg" alt="GrowSeoul 서비스 구상">
           <img src="assets/top10.png" alt="성장 지수 상위 10개 행정동">
         </div>
-        <figcaption>GrowSeoul / top 10 districts</figcaption>
-      </figure>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ SKILLS ============ -->
-<section id="skills">
+<section id="skills" class="band band-canvas">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rise">03 — Skills</p>
-      <h2 class="rise">다루는 것</h2>
+    <div class="head rise">
+      <p class="eyebrow t-subheading">다루는 것</p>
     </div>
-    <div class="list">
-      <div class="item rise">
-        <span class="no">01</span>
-        <div><h3>Python</h3><div class="meta">preprocessing · pandas</div></div>
-        <p>인코딩 처리, 코드 체계 표준화, 결측과 이상치 정리까지 전처리 파이프라인을 직접 씁니다.</p>
+    <div class="grid-3">
+      <div class="card rise">
+        <p class="no numr">01</p>
+        <h3 class="t-subheading">Python</h3>
+        <p class="meta">preprocessing · pandas</p>
+        <p class="t-body-sm">인코딩 처리, 코드 체계 표준화, 결측과 이상치 정리까지 전처리
+          파이프라인을 직접 씁니다.</p>
       </div>
-      <div class="item rise">
-        <span class="no">02</span>
-        <div><h3>R</h3><div class="meta">statistics · mapping</div></div>
-        <p>통계 분석과 지도 시각화에 사용합니다. 행정 단위 분포와 지표 간 관계를 확인합니다.</p>
+      <div class="card rise">
+        <p class="no numr">02</p>
+        <h3 class="t-subheading">R</h3>
+        <p class="meta">statistics · mapping</p>
+        <p class="t-body-sm">통계 분석과 지도 시각화에 사용합니다. 행정 단위 분포와 지표 간
+          관계를 확인합니다.</p>
       </div>
-      <div class="item rise">
-        <span class="no">03</span>
-        <div><h3>SQL</h3><div class="meta">4 weeks · 25 lessons / week</div></div>
-        <p>SELECT 중심 부트캠프를 이수하고 HackerRank와 SolveSQL 문제로 학습 내용을 검증했습니다.</p>
+      <div class="card rise">
+        <p class="no numr">03</p>
+        <h3 class="t-subheading">SQL</h3>
+        <p class="meta numr">4 weeks · 25 lessons / week</p>
+        <p class="t-body-sm">SELECT 중심 부트캠프를 이수하고 HackerRank와 SolveSQL 문제로
+          학습 내용을 검증했습니다.</p>
       </div>
-      <div class="item rise">
-        <span class="no">04</span>
-        <div><h3>RAG &amp; Vision</h3><div class="meta">in progress · lab work</div></div>
-        <p>연구실에서 진행 중인 주제입니다. 검색 증강 생성과 비전 모델을 다루고 웹으로 옮깁니다.</p>
+      <div class="card rise">
+        <span class="badge">진행중</span>
+        <h3 class="t-subheading">RAG &amp; 비전처리</h3>
+        <p class="meta">lab work</p>
+        <p class="t-body-sm">연구실에서 진행 중인 주제입니다. 검색 증강 생성과 비전 모델을
+          다루고 웹으로 옮깁니다.</p>
       </div>
-    </div>
-
-    <div class="head" style="margin-top:var(--gap-section)">
-      <p class="eyebrow rise">04 — Education</p>
-      <h2 class="rise">과정</h2>
-    </div>
-    <div class="list">
-      <details class="item rise">
-        <summary>
-          <span class="no">01</span>
-          <div><h3>한남대학교 AI Bootcamp</h3><div class="meta">2026.06.24 – 2026.08.13</div></div>
-          <p>교육부·한국무역협회(KITA) 주관 2026 첨단산업 인재양성 부트캠프 AI 트랙.</p>
-          <span class="chev"></span>
-        </summary>
-        <div class="detail">
-          <p>첨단산업 분야의 실무 인력을 기르는 정부 지원 과정입니다. AI 트랙 중급 레벨에서
-            세 개 코스를 연속으로 이수했고, 과정 중 두 건의 팀 프로젝트를 수행했습니다.</p>
-          <dl>
-            <dt>PROGRAM</dt><dd>2026 첨단산업 인재양성 부트캠프 · AI 트랙</dd>
-            <dt>HOST</dt><dd>교육부 · 한국무역협회(KITA)</dd>
-            <dt>LEVEL</dt><dd>중급 (Intermediate)</dd>
-            <dt>B1</dt><dd>2026.06.24 – 2026.07.03</dd>
-            <dt>B2</dt><dd>2026.07.06 – 2026.07.16</dd>
-            <dt>B3</dt><dd>2026.08.03 – 2026.08.13</dd>
-          </dl>
-        </div>
-      </details>
-      <details class="item rise">
-        <summary>
-          <span class="no">02</span>
-          <div><h3>SQL 데이터 캠프</h3><div class="meta">2026.02.02 – 2026.02.28</div></div>
-          <p>4주 · 주당 25강 구성의 SELECT 중심 과정.</p>
-          <span class="chev"></span>
-        </summary>
-        <div class="detail">
-          <p>강의만 듣고 끝내지 않도록 HackerRank와 SolveSQL에서 외부 문제를 풀어 학습 내용을
-            따로 검증했습니다. 별도 미션 수행률이 낮게 남은 점은 보완할 부분입니다.</p>
-          <dl>
-            <dt>PERIOD</dt><dd>2026.02.02 – 2026.02.28 (4주)</dd>
-            <dt>VOLUME</dt><dd>주당 25강</dd>
-            <dt>SCOPE</dt><dd>SELECT 문 중심</dd>
-            <dt>PROGRESS</dt><dd>진도 100% · 이해도 100% · 미션 25%</dd>
-            <dt>VALIDATION</dt><dd>HackerRank · SolveSQL</dd>
-          </dl>
-        </div>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="contact">
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="band">
   <div class="wrap">
-    <p class="eyebrow rise">05 — Contact</p>
-    <h2 class="display rise">이야기할<br>준비가 되어 있습니다</h2>
-    <div class="channels rise">
-      <a class="mono" href="mailto:cksgdx@icloud.com">cksgdx@icloud.com</a>
-      <span class="mono muted">010-8690-2995</span>
+    <div class="head rise">
+      <p class="eyebrow t-subheading">과정</p>
     </div>
-    <a class="btn btn-primary rise" href="mailto:cksgdx@icloud.com">메일 보내기</a>
+
+    <details class="edu-card rise">
+      <summary>
+        <p class="no numr">01</p>
+        <div class="head-text">
+          <h3 class="t-subheading">한남대학교 AI Bootcamp</h3>
+          <p class="meta numr">2026.06.24 – 2026.08.13</p>
+        </div>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <p class="t-body-sm">교육부·한국무역협회(KITA) 주관 첨단산업 인재양성 부트캠프 AI 트랙입니다.
+          중급 레벨에서 세 개 코스를 연속으로 이수했고, 과정 중 두 건의 팀 프로젝트를 수행했습니다.</p>
+        <dl>
+          <dt>PROGRAM</dt><dd>2026 첨단산업 인재양성 부트캠프 · AI 트랙</dd>
+          <dt>HOST</dt><dd>교육부 · 한국무역협회(KITA)</dd>
+          <dt>LEVEL</dt><dd>중급 (Intermediate)</dd>
+          <dt>B1</dt><dd class="numr">2026.06.24 – 2026.07.03</dd>
+          <dt>B2</dt><dd class="numr">2026.07.06 – 2026.07.16</dd>
+          <dt>B3</dt><dd class="numr">2026.08.03 – 2026.08.13</dd>
+        </dl>
+      </div>
+    </details>
+
+    <details class="edu-card rise">
+      <summary>
+        <p class="no numr">02</p>
+        <div class="head-text">
+          <h3 class="t-subheading">SQL 데이터 캠프</h3>
+          <p class="meta numr">2026.02.02 – 2026.02.28</p>
+        </div>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <p class="t-body-sm">4주 · 주당 25강 구성의 SELECT 중심 과정입니다. 강의만 듣고 끝내지
+          않도록 HackerRank와 SolveSQL에서 외부 문제를 풀어 학습 내용을 따로 검증했습니다.</p>
+        <dl>
+          <dt>PERIOD</dt><dd class="numr">2026.02.02 – 2026.02.28 (4주)</dd>
+          <dt>VOLUME</dt><dd class="numr">주당 25강</dd>
+          <dt>SCOPE</dt><dd>SELECT 문 중심</dd>
+          <dt>PROGRESS</dt><dd class="numr">진도 100% · 이해도 100% · 미션 25%</dd>
+          <dt>VALIDATION</dt><dd>HackerRank · SolveSQL</dd>
+        </dl>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="band band-canvas cta">
+  <div class="wrap">
+    <p class="eyebrow t-body-sm rise">Contact</p>
+    <h2 class="t-heading-lg ink rise">이야기할 준비가<br>되어 있습니다</h2>
+    <a class="btn btn-filled rise" href="mailto:cksgdx@icloud.com">메일 보내기</a>
+    <p class="contact-line rise">
+      <a href="mailto:cksgdx@icloud.com">cksgdx@icloud.com</a>
+      &nbsp;·&nbsp;<span class="numr">010-8690-2995</span>
+    </p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>MIN CHAN HONG</span>
-    <span>HANNAM UNIV. — AI DATASCIENCE</span>
+    <span>Min Chanhong — 한남대학교 AI 데이터사이언스</span>
+    <span>© 2026 Min Chanhong. All rights reserved.</span>
   </div>
 </footer>
 
@@ -432,7 +451,10 @@ const io = new IntersectionObserver((entries) => {
 }, {rootMargin: '0px 0px -10% 0px'});
 document.querySelectorAll('.rise').forEach(el => io.observe(el));
 
-// Nav active indicator — marks the section currently occupying the viewport.
+// Nav: frosted background once scrolled, active link tracks the section in view.
+const navEl = document.getElementById('nav');
+addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 4), {passive:true});
+
 const links = [...document.querySelectorAll('nav ul a')];
 const spy = new IntersectionObserver((entries) => {
   entries.forEach(e => {
