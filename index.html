@@ -190,6 +190,10 @@ nav .menu .idx{color:var(--quiet-dot);font-size:.6875rem;padding-top:2px;flex:no
 /* grid children default to min-width:auto; long unbroken runs (a·b·c chains, file paths)
    would otherwise set the card's min-content width and push the page sideways */
 .skill>*{min-width:0;overflow-wrap:anywhere}
+/* smaller than the default t-subheading clamp: the .side column narrows to ~200px
+   at the two-column breakpoint, where "RAG & Computer Vision" needs the extra room
+   other one-word headings (Python, R, SQL) don't */
+.skill h3{font-size:clamp(1.0625rem,1.81vw,1.3rem)}
 .skill .side .meta{margin-bottom:0}
 .skill .body p+p{margin-top:14px}
 .skill .body .lede{color:var(--ink)}
@@ -277,7 +281,7 @@ footer a:hover{text-decoration:underline}
  <li><a href="#skill-python"><span class="idx">01</span>Python</a></li>
  <li><a href="#skill-r"><span class="idx">02</span>R</a></li>
  <li><a href="#skill-sql"><span class="idx">03</span>SQL</a></li>
- <li><a href="#skill-rag"><span class="idx">04</span>RAG &amp; 비전처리</a></li>
+ <li><a href="#skill-rag"><span class="idx">04</span>RAG &amp; Computer Vision</a></li>
  </ul>
  </li>
 
@@ -301,7 +305,7 @@ footer a:hover{text-decoration:underline}
  <h1 class="t-display ink rise">Teaching AI to See.</h1>
  <p class="t-body sub rise">데이터 분석과 데이터 파이프라인 구축을 주로 합니다.
  빠른 적응력과 이해력을 바탕으로 낯선 데이터와 상황에도 대응합니다.</p>
- <p class="focus rise">주요 관심사 및 연구 분야 — RAG · 비전처리 · 웹개발</p>
+ <p class="focus rise">주요 관심사 및 연구 분야 — RAG · Computer Vision · 웹개발</p>
  <a class="btn btn-filled rise" href="mailto:cksgdx@icloud.com">메일 보내기</a>
  <figure class="rise">
  <img src="assets/profile.jpg" alt="민찬홍 프로필 사진">
@@ -323,7 +327,7 @@ footer a:hover{text-decoration:underline}
  <dt>LAB</dt><dd>박영호 교수 연구실 학부연구생 (2026.06 –)</dd>
  </dl>
  <dl class="rise">
- <dt>FOCUS</dt><dd>RAG · 비전처리 · 웹개발</dd>
+ <dt>FOCUS</dt><dd>RAG · Computer Vision · 웹개발</dd>
  <dt>TOOLS</dt><dd>Python · R · SQL</dd>
  <dt>EMAIL</dt><dd><a class="btn-link" style="font-size:inherit" href="mailto:cksgdx@icloud.com">cksgdx@icloud.com</a></dd>
  <dt>PHONE</dt><dd>010-8690-2995</dd>
@@ -509,7 +513,7 @@ footer a:hover{text-decoration:underline}
  <article class="card skill rise" id="skill-rag">
  <div class="side">
  <span class="badge">진행중</span>
- <h3 class="t-subheading">RAG &amp; 비전처리</h3>
+ <h3 class="t-subheading">RAG &amp; Computer Vision</h3>
  <p class="meta">연구실 프로젝트 · OpenCV</p>
  </div>
  <div class="body">
@@ -520,7 +524,7 @@ footer a:hover{text-decoration:underline}
  De 분포의 과분산·왜도·다봉성을 분석해 CAM·MAM·FMM 중 적합한 통계 연대 모델을 추천하는 것이 핵심 기능이며,
  모델 선택은 재현성을 위해 규칙 기반으로 두고 그 위에 RAG를 얹는 방향으로 설계하고 있습니다.
  루미네선스 문헌을 OCR해 코퍼스로 만들고, LLM이 그 코퍼스를 근거로 추천 이유를 설명하는 구조입니다.</p>
- <p class="t-body-sm">비전처리는 OpenCV로 화소 점처리(산술·논리 연산, 밝기와 대비, 합성과 워터마크),
+ <p class="t-body-sm">Computer Vision은 OpenCV로 화소 점처리(산술·논리 연산, 밝기와 대비, 합성과 워터마크),
  히스토그램 스트레칭·평활화·정합, 화소 영역 처리(filter2D, blur, GaussianBlur, 샤프닝, 엠보싱),
  소벨·라플라시안·캐니 경계선 검출, PSNR 화질 평가, 중간값·최소/최대 비선형 필터,
  침식·팽창·열림·닫힘의 형태학 연산, 그리고 웹캠과 동영상 파일 처리까지 실습했습니다.</p>
