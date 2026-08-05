@@ -218,8 +218,10 @@ nav .menu .idx{color:var(--quiet-dot);font-size:.6875rem;padding-top:2px;flex:no
 .edu-card[open] .chev{transform:rotate(-135deg)}
 .edu-card .body{padding:0 28px 28px;color:var(--mid-gray)}
 .edu-card .body dl{display:grid;grid-template-columns:8rem 1fr;margin-top:16px}
+/* grid children default to min-width:auto; long parenthetical (a·b·c) runs would
+   otherwise refuse to wrap and push the card past the viewport */
 .edu-card .body dt,.edu-card .body dd{padding-block:10px;border-top:1px solid var(--hairline);
- font-size:.9375rem}
+ font-size:.9375rem;min-width:0;overflow-wrap:anywhere}
 .edu-card .body dt{color:var(--mid-gray)}
 .edu-card .body dd{color:var(--ink)}
 
@@ -554,14 +556,20 @@ footer a:hover{text-decoration:underline}
  </summary>
  <div class="body">
  <p class="t-body-sm">교육부·한국무역협회(KITA) 주관 첨단산업 인재양성 부트캠프 AI 트랙입니다.
- 중급 레벨에서 세 개 코스를 연속으로 이수했고, 과정 중 두 건의 팀 프로젝트를 수행했습니다.</p>
+ 중급 레벨에서 영상·음성·자연어 데이터 처리(B1), 머신러닝·신경망 이론(B2),
+ 산업 현장 실습(B3)까지 세 과정을 연속으로 밟고 있습니다.</p>
  <dl>
  <dt>PROGRAM</dt><dd>2026 첨단산업 인재양성 부트캠프 · AI 트랙</dd>
  <dt>HOST</dt><dd>교육부 · 한국무역협회(KITA)</dd>
  <dt>LEVEL</dt><dd>중급 (Intermediate)</dd>
- <dt>B1</dt><dd>2026.06.24 – 2026.07.03</dd>
- <dt>B2</dt><dd>2026.07.06 – 2026.07.16</dd>
- <dt>B3</dt><dd>2026.08.03 – 2026.08.13</dd>
+ <dt>B1</dt><dd>2026.06.24 – 2026.07.03 · 영상(CNN·PointNet·Vision Transformer)·
+ 음성(End-to-End ASR)·자연어 데이터 처리를 다루고, 이미지 트랙 프로젝트로
+ Roboflow 기반 객체 탐지 모델을 구축하며 마무리했습니다.</dd>
+ <dt>B2</dt><dd>2026.07.06 – 2026.07.16 · 선형·로지스틱 회귀, 결정 트리·랜덤 포레스트,
+ 신경망 오차역전파를 다루고, 서울시 자전거 대여량 예측 실습으로 이론을 검증했습니다.</dd>
+ <dt>B3</dt><dd>2026.08.03 – 2026.08.13 (진행중) · 산업 현장 특강과 함께
+ 전기차 주행 데이터로 물리 기반 신경망(Physics-guided NN)을 구현해
+ 배터리 전력을 예측하는 실습을 진행하고 있습니다.</dd>
  </dl>
  </div>
  </details>
